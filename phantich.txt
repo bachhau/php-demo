@@ -1,0 +1,96 @@
+1> phân tích dự án 
+    - Frontend:
+        + Trang chủ
+        + Danh sách sản phẩm 
+        + Chi tiết sản phẩm
+        + Giỏ hàng
+        + Checkout
+        + Trang Thanh toán hoàn thành
+        + Trang liên hệ 
+    - Admin
+        + Người dùng:
+            \ Quản lý Role (admin,user)
+            \ Quản lý người dùng (admin,user=> thực hiện các nhiệm vụ thêm, sửa , xoá)
+            \ Đăng ký tài khoản 
+            \ Đăng nhập tài khoản
+        + Quản lý danh mục sản phẩm
+        + Quản lý sản phẩm
+            \ Thêm sản phẩm
+            \ sửa sản phẩm
+            \ Xoá sản phẩm
+        + Quản lý đơn hàng  
+            => Các đơn hàng sẽ được hiện thị giảm dần theo thời gian 
+        + Quản lý phản hồi 
+
+
+
+2> Hướng đi phân tích Database
+    - Bảng Role
+        + id->int -> khoá chính tự tăng
+        + name -> string(varchar) 20 ký tự 
+
+    - Bảng User 
+        + id:int -> khoá chính tự tăng
+        + fullname->string (varchar)  50 ký tự 
+        + email -> string (varchar) 150 ký tự
+        + phone  -> string (varchar) 20 ký tự 
+        + address -> string (varchar) 20 ký tự
+        + password -> string ->MD5 -> 32 ký tự 
+        + role_id ->int -> foreign key ->ROle(id);
+        + create_at :datetime -> tao bản ghi
+        + update_at :datetime -> sủa bản ghi 
+
+    - Bảng Danh mục sản phẩm (Categorys)
+        + id -> int -> khoá chính tự tăng 
+        + name -> string (varchar) -> 100 ký tư
+
+    - Bảng sản phẩm (Products)
+        + id -> int -> khoá chính tự tăng 
+        + category_id -> int -> foreign key -> category(id)
+        + title -> tring -> 350 ky tụ
+        + price int -> 
+        + discount int
+        + thumbnail string -> 500 ký tự
+        + description :longtext
+        + create_at :datetime -> tao bản ghi
+        + update_at :datetime -> sủa bản ghi 
+
+    -Bảng quản lý hình ảnh (galery)
+        + id int tự tăng 
+        + product_id int (id) -> foreign key ->products (id)
+        + thumbnail -> string 500 ký tự
+    - Bảng quán lý phản hồi (feedback)
+        + int int tự tăng 
+        + firstname - sting 30
+        + lastnmae  -tring 30 
+        + email -string 150 ký tự 
+        + phone string 20  ký tưj
+        + subject_name tring 200 ký tự 
+        + note(noi dung) string 500 ký tự 
+
+    
+    - Bảng Đơn hàng (order)
+        + id int tự tăng 
+        + fullname 
+        + user_id int foreign key users (id)
+        + email 
+        + phone
+        + address
+        + note
+        + order-date datetime - thời điểm đặt đơn hàng
+        status int (chờ duyệt , hay đã duyệt)
+        +  total-money lưu tổng tiền đơn hàng
+
+    - Bảng chi tiết đơn hàng (detail_oder)
+        + id int tự tăng 
+        + order-id int - foreign key - order(id)
+        + product-id int - foreign key - product(id)
+        + price int
+        + num int số lường sản phẩm mua
+        + total-money lưu tổng tiền của sản phẩm (số lượng * đơn giá)
+
+
+
+
+
+             
